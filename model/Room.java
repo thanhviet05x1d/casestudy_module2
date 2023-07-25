@@ -1,7 +1,5 @@
 package model;
 
-import utils.FacilityInvalidInputException;
-
 public class Room extends Facility {
     private String roomFreeService;
 

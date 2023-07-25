@@ -1,31 +1,44 @@
 package service;
 
+import model.Customer;
 import model.Promotion;
-import repository.IPromotionRepository;
-import repository.PromotionRepository;
+import repository.*;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class PromotionService implements IPromotionService {
     IPromotionRepository promotionRepository = new PromotionRepository();
 
+    Scanner scanner = new Scanner(System.in);
+
+    @Override
+    public void addPromotion() {
+        System.out.println("Enter type of promotion:");
+        String promotionType = scanner.nextLine();
+        System.out.println("Enter value of Type: ");
+        int value = Integer.parseInt(scanner.nextLine());
+        System.out.println("Enter number of Type: ");
+        int number = Integer.parseInt(scanner.nextLine());
+        Promotion promotion = new Promotion(promotionType, value, number);
+        promotionRepository.addPromotion(promotion);
+    }
+
     @Override
     public void getAllPromotions() {
         Set<Promotion> promotionSet = promotionRepository.getAllPromotions();
-        for (Promotion promotion: promotionSet) {
+        for (Promotion promotion : promotionSet) {
             System.out.println(promotion);
         }
     }
 
     @Override
-    public void displayCustomerByYear(int year) {
-
+    public void displayCustomerByYear() {
+        System.out.println("Enter a year to display customers: ");
+        String yearString = scanner.nextLine();
+        List<Customer> customerListByYear = promotionRepository.displayCustomerByYear(yearString);
+        for (Customer customer : customerListByYear) {
+            System.out.println(customer);
+        }
     }
 
-    @Override
-    public void giveVoucherPromotion(int voucher10Percent, int voucher20Percent, int voucher50Percent) {
-
-    }
 }

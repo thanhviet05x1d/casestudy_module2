@@ -1,33 +1,31 @@
 package model;
 
-import java.util.Comparator;
-
 public class Promotion implements Comparable<Promotion> {
-    private String customerId;
-    private String customerName;
     private String promotionType;
+    private int value;
+    private int number;
 
 
-    public Promotion(String customerId, String customerName, String promotionType) {
-        this.customerId = customerId;
-        this.customerName = customerName;
+    public Promotion(String promotionType, int value,int numberOfVoucher) {
         this.promotionType = promotionType;
+        this.value=value;
+        this.number = numberOfVoucher;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public int getNumber() {
+        return number;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public int getValue() {
+        return value;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public String getPromotionType() {
@@ -38,18 +36,18 @@ public class Promotion implements Comparable<Promotion> {
         this.promotionType = promotionType;
     }
 
+
     @Override
     public String toString() {
         return "Promotion{" +
-                "customerId='" + customerId + '\'' +
-                ", customerName='" + customerName + '\'' +
-                ", promotionType='" + promotionType + '\'' +
+                "promotionType='" + promotionType + '\'' +
+                ", value=" + value +
+                ", number=" + number +
                 '}';
     }
 
-
     @Override
     public int compareTo(Promotion o) {
-        return this.customerId.compareTo(o.customerId);
+        return this.value - o.value;
     }
 }

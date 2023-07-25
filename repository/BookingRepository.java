@@ -40,6 +40,13 @@ public class BookingRepository implements IBookingRepository {
     public Set<Booking> displayAllBookings() {
         return bookingSet;
     }
-
-
+    @Override
+    public void deleteBooking(String bookingId) {
+        for (Booking b:bookingSet) {
+            if (b.getBookingId().equals(bookingId)){
+                bookingSet.remove(b);
+                break;
+            }
+        }
+    }
 }

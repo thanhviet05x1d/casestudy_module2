@@ -24,6 +24,8 @@ public class BookingService implements IBookingService {
 
         }
     }
+
+
     @Override
     public void addNewBooking() {
         System.out.println("------ Add New Booking ------");
@@ -75,5 +77,10 @@ public class BookingService implements IBookingService {
         }
     }
 
-
+    @Override
+    public void deleteNewBooking() {
+        System.out.println("Enter booking ID to delete:");
+        String bookingId = scanner.nextLine();
+        bookingRepository.deleteBooking(bookingId);
+    }
 }

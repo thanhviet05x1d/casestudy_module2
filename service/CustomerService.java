@@ -1,7 +1,7 @@
 package service;
 
+import model.Booking;
 import model.Customer;
-import model.Employee;
 import repository.CustomerRepository;
 import repository.ICustomerRepository;
 import utils.PersonInvalidInputException;
@@ -46,7 +46,7 @@ public class CustomerService implements ICustomerService {
         System.out.print("Enter customer date of birth (yyyy-MM-dd): ");
         String dobString = scanner.nextLine();
 
-        Date dateOfBirth=null;
+        Date dateOfBirth = null;
         try {
             dateOfBirth = new SimpleDateFormat("yyyy-MM-dd").parse(dobString);
         } catch (ParseException e) {
@@ -71,7 +71,7 @@ public class CustomerService implements ICustomerService {
 
 
         try {
-            Customer customer = new Customer(idCardNumber, name, customerID, dateOfBirth, gender,phoneNumber, email, type, address);
+            Customer customer = new Customer(idCardNumber, name, customerID, dateOfBirth, gender, phoneNumber, email, type, address);
             customer.validateInput();
             customerRepository.addCustomer(customer);
             System.out.println("Customer added successfully.");
@@ -104,5 +104,18 @@ public class CustomerService implements ICustomerService {
         for (Customer c : customerSearchList) {
             System.out.println(c);
         }
+    }
+
+    @Override
+    public void getBookingsCurrentMonth() {
+        List<Booking> bookingCurrentMonthList = customerRepository.getBookingsCurrentMonth();
+        for (Booking b : bookingCurrentMonthList) {
+            System.out.println(b);
+        }
+    }
+
+    @Override
+    public void bookingsGetVoucher() {
+        customerRepository.bookingsGetVoucher();
     }
 }

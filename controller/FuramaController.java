@@ -12,7 +12,6 @@ public class FuramaController {
     private static IFacilityService facilityService = new FacilityService();
     private static IBookingService bookingService = new BookingService();
     private static IContractService contractService = new ContractService();
-
     private IPromotionService promotionService = new PromotionService();
 
     private static Scanner scanner = new Scanner(System.in);
@@ -120,6 +119,7 @@ public class FuramaController {
                 System.out.println("4. Delete customer");
                 System.out.println("5. Search by name customer");
                 System.out.println("6. Return main menu");
+                System.out.println("7. Get Customers in current month");
                 System.out.print("Enter your choice (1-6): ");
                 choice = scanner.nextInt();
                 scanner.nextLine(); // Consume the newline character
@@ -132,7 +132,7 @@ public class FuramaController {
                         customerService.addCustomer();
                         break;
                     case 3:
-                       customerService.editCustomer();
+                        customerService.editCustomer();
                         break;
                     case 4:
                         customerService.deleteCustomer();
@@ -142,6 +142,9 @@ public class FuramaController {
                         break;
                     case 6:
                         return; // Return to the main menu
+                    case 7:
+                        customerService.bookingsGetVoucher();
+                        break;
                     default:
                         System.out.println("Invalid choice. Please choose a number between 1 and 6.");
                 }
@@ -242,7 +245,7 @@ public class FuramaController {
 
                     break;
                 case 5:
-                   contractService.editContract();
+                    contractService.editContract();
                     break;
                 case 6:
                     exitMenu = true;
@@ -257,21 +260,38 @@ public class FuramaController {
         boolean exitMenu = false;
         while (!exitMenu) {
             System.out.println("\nPROMOTION MANAGEMENT MENU");
-            System.out.println("1. Display List of Customers Using Services");
-            System.out.println("2. Display List of Customers Getting Vouchers");
-            System.out.println("3. Return to Main Menu");
+            System.out.println("1. Add New Promotion");
+            System.out.println("2. Display all promotions");
+            System.out.println("3. Display all Contracts by Year");
+            System.out.println("4. Display all Customers using services by year");
+            System.out.println("5. Display List of Booking in current Month");
+            System.out.println("6. Display List of Booking get Voucher in current Month");
+            System.out.println("7. Return to Main Menu");
             System.out.print("Your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Read the newline character after reading the number
 
             switch (choice) {
                 case 1:
-//                    promotionService.getAllPromotions();
+                    promotionService.addPromotion();
                     break;
                 case 2:
                     promotionService.getAllPromotions();
                     break;
                 case 3:
+                    contractService.getContractsByYear();
+                    break;
+                case 4:
+                    promotionService.displayCustomerByYear();
+                    break;
+                case 5:
+                    customerService.getBookingsCurrentMonth();
+
+                    break;
+                case 6:
+                    customerService.bookingsGetVoucher();
+                    break;
+                case 7:
                     exitMenu = true;
                     break;
                 default:

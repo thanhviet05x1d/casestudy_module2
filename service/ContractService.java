@@ -4,6 +4,8 @@ import model.Booking;
 import model.Contract;
 import repository.BookingRepository;
 import repository.ContractRepository;
+import repository.IBookingRepository;
+import repository.IContractRepository;
 import utils.BookingStartDateComparator;
 
 import java.text.ParseException;
@@ -11,19 +13,17 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ContractService implements IContractService {
-    private ContractRepository contractRepository = new ContractRepository();
-    private BookingRepository bookingRepository = new BookingRepository();
+    private IContractRepository contractRepository = new ContractRepository();
+    private IBookingRepository bookingRepository = new BookingRepository();
     private Scanner scanner = new Scanner(System.in);
 
     @Override
     public void createNewContract() {
 
         System.out.println("------ Create New Contract ------");
-
         // Chuyển danh sách booking từ Set sang PriorityQueue
         Queue<Booking> bookingQueue = new PriorityQueue<>(new BookingStartDateComparator());
         bookingQueue.addAll(bookingRepository.displayAllBookings());
-
 
         // Lấy booking đầu tiên từ hàng đợi
         Booking booking = bookingQueue.poll();
@@ -100,9 +100,7 @@ public class ContractService implements IContractService {
                     Date newEndDate = new SimpleDateFormat("yyyy-MM-dd").parse(newEndDateString);
 
                     Contract newContract = new Contract(contractId, newBookingId, newCustomerId, newFacilityId, newStartDate, newEndDate);
-
                     contractRepository.editContract(contractId, newContract);
-
                     System.out.println("Contract updated successfully.");
 
                 } catch (ParseException e) {
@@ -110,6 +108,16 @@ public class ContractService implements IContractService {
                 }
                 break;
             }
+        }
+    }
+
+    @Override
+    public void getContractsByYear() {
+        System.out.println("Enter year to get Contracts:");
+        String yearString = scanner.nextLine();
+        List<Contract> contractsByYear = contractRepository.getContractsByYear(yearString);
+        for (Contract c : contractsByYear) {
+            System.out.println(c);
         }
     }
 }

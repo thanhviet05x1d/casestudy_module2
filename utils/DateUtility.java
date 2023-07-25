@@ -6,8 +6,8 @@ import model.Employee;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateUtility{
-    public Employee parseEmployeeData (String[] data) {
+public class DateUtility {
+    public Employee parseEmployeeData(String[] data) {
         String idCardNumber = data[0];
         String name = data[1];
         String employeeID = data[2];
@@ -18,10 +18,10 @@ public class DateUtility{
         String degree = data[7];
         String position = data[8];
         double salary = Double.parseDouble(data[9]);
-        return new model.Employee(idCardNumber,name,employeeID,dateOfBirth,gender,phoneNumber,email,degree,position,salary);
+        return new model.Employee(idCardNumber, name, employeeID, dateOfBirth, gender, phoneNumber, email, degree, position, salary);
     }
 
-    public Customer parseCustomerData (String[] data) {
+    public Customer parseCustomerData(String[] data) {
         String idCardNumber = data[0];
         String name = data[1];
         String customerID = data[2];
@@ -32,8 +32,9 @@ public class DateUtility{
         String type = data[7];
         String address = data[8];
 
-        return new model.Customer(idCardNumber,name,customerID,dateOfBirth,gender,phoneNumber,email,type,address);
+        return new model.Customer(idCardNumber, name, customerID, dateOfBirth, gender, phoneNumber, email, type, address);
     }
+
     public Date parseDate(String dateString) {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -43,6 +44,7 @@ public class DateUtility{
         }
         return null;
     }
+
     public String formatDate(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);

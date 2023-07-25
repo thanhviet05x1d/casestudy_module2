@@ -1,7 +1,5 @@
 package service;
 
-import model.Facility;
-
 public interface IFacilityService {
     void displayFacilities();
 

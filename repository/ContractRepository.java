@@ -1,16 +1,15 @@
 package repository;
 
-import model.Booking;
 import model.Contract;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class ContractRepository implements IContractRepository {
+    BookingRepository bookingRepository = new BookingRepository();
     private static final Set<Contract> contractSet = new HashSet<>();
+
 
     static {
         Date startDate1 = null;
@@ -33,7 +32,8 @@ public class ContractRepository implements IContractRepository {
 
     @Override
     public void addContract(Contract contract) {
-        contractSet.add(contract);
+        contractSet.add(contract); // Add new contract
+        bookingRepository.deleteBooking(contract.getBookingId()); // Delete booking
     }
 
 
@@ -57,5 +57,25 @@ public class ContractRepository implements IContractRepository {
         }
     }
 
+    @Override
+    public List<Contract> getContractsByYear(String yearString) {
+        List<Contract> contractListByYear = new Stack<>();
+        int yearSearch = Integer.parseInt(yearString);
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
 
+        for (Contract contract : contractSet) {
+            Date startDate = contract.getStartDate();
+            Date endDate = contract.getEndDate();
+
+            // Lấy năm từ startDate và endDate
+            int startYear = Integer.parseInt(yearFormat.format(startDate));
+            int endYear = Integer.parseInt(yearFormat.format(endDate));
+
+            // Nếu năm của startDate hoặc endDate bằng với năm nhập vào, thêm Contract vào danh sách kết quả
+            if (startYear == yearSearch || endYear == yearSearch) {
+                contractListByYear.add(contract);
+            }
+        }
+        return contractListByYear;
+    }
 }

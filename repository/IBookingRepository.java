@@ -8,5 +8,6 @@ public interface IBookingRepository {
     void addBooking(Booking booking);
 
     Set<Booking> displayAllBookings();
+    void deleteBooking(String bookingId);
 
 }
