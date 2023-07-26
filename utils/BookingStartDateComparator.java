@@ -1,6 +1,6 @@
 package utils;
 
-import model.Booking;
+import model.booking.Booking;
 
 import java.util.Comparator;
 

@@ -1,6 +1,6 @@
 package data;
 
-import model.Employee;
+import model.person.Employee;
 import utils.DateUtility;
 
 import java.io.*;
