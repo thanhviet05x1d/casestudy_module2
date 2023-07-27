@@ -12,7 +12,7 @@ import repository.interface_repo.IFacilityRepository;
 import service.interface_ser.IBookingService;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class BookingService implements IBookingService {
@@ -56,30 +56,24 @@ public class BookingService implements IBookingService {
 
         System.out.print("Enter start date (yyyy-MM-dd): ");
         String startDateString = scanner.nextLine();
+        LocalDate startDate = LocalDate.parse(startDateString);
 
         System.out.print("Enter end date (yyyy-MM-dd): ");
         String endDateString = scanner.nextLine();
+        LocalDate endDate = LocalDate.parse(endDateString);
 
-        try {
-            Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
-            Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
+        Booking booking = new Booking(bookingId, customerId, facilityId, startDate, endDate);
+        bookingRepository.addBooking(booking);
 
-            Booking booking = new Booking(bookingId, customerId, facilityId, startDate, endDate);
-            bookingRepository.addBooking(booking);
-
-            // Cập nhật số lần sử dụng của facility sau khi booking thành công
-            for (Facility facility : facilityList.keySet()) {
-                if (facility.getFacilityID().equals(facilityId)) {
-                    facilityList.put(facility, facilityList.get(facility) + 1);
-                    break;
-                }
+        // Cập nhật số lần sử dụng của facility sau khi booking thành công
+        for (Facility facility : facilityList.keySet()) {
+            if (facility.getFacilityID().equals(facilityId)) {
+                facilityList.put(facility, facilityList.get(facility) + 1);
+                break;
             }
-
-            System.out.println("Booking added successfully.");
-
-        } catch (ParseException e) {
-            System.out.println("Error: Invalid date format. Please enter the date in yyyy-MM-dd format.");
         }
+        System.out.println("Booking added successfully.");
+
     }
 
     @Override

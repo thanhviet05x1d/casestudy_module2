@@ -1,5 +1,6 @@
 package model.booking;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -7,13 +8,13 @@ public class Booking implements Comparable<Booking> {
     private String bookingId;
     private String customerId;
     private String facilityId;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     public Booking() {
     }
 
-    public Booking(String bookingId, String customerId, String facilityId, Date startDate, Date endDate) {
+    public Booking(String bookingId, String customerId, String facilityId, LocalDate startDate, LocalDate endDate) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.facilityId = facilityId;
@@ -21,19 +22,19 @@ public class Booking implements Comparable<Booking> {
         this.endDate = endDate;
     }
 
-    public Date getStartDate() {
+    public LocalDate  getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate  startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate  getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate  endDate) {
         this.endDate = endDate;
     }
 

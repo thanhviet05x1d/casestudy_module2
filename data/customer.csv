@@ -1,6 +1,6 @@
 idCardNumber,name,customerID,dateOfBirth,gender,phoneNumber,email,type,address
-1,Nam,KH-0001,23-07-23,male,365129804,viet@gmail.com,Diamond,Da Nang
-2,Dat,KH-0002,24-07-23,female,365129804,viet@gmail.com,Platinum,Ha Noi
-3,Thang,KH-0003,25-07-23,male,365129804,viet@gmail.com,Gold,Da Nang
-4,Thien,KH-0004,26-07-23,female,365129804,viet@gmail.com,Silver,Ha Noi
-5,Long,KH-0005,27-07-23,male,365129804,viet@gmail.com,Member,Da Nang
+1,Nam,KH-0001,2003-01-05,male,365129804,viet@gmail.com,Diamond,Da Nang
+2,Dat,KH-0002,2003-02-04,female,365129804,viet@gmail.com,Platinum,Ha Noi
+3,Thang,KH-0003,2003-03-03,male,365129804,viet@gmail.com,Gold,Da Nang
+4,Thien,KH-0004,2003-04-02,female,365129804,viet@gmail.com,Silver,Ha Noi
+5,Long,KH-0005,2003-05-01,male,365129804,viet@gmail.com,Member,Da Nang

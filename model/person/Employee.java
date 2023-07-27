@@ -3,11 +3,12 @@ package model.person;
 
 import utils.PersonInvalidInputException;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class Employee extends Person {
     private String employeeID;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String gender;
     private String phoneNumber;
     private String email;
@@ -16,7 +17,7 @@ public class Employee extends Person {
     private double salary;
 
 
-    public Employee(String idCardNumber, String name, String employeeID, Date dateOfBirth, String gender, String phoneNumber, String email, String degree, String position, double salary) {
+    public Employee(String idCardNumber, String name, String employeeID, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String degree, String position, double salary) {
         super(idCardNumber, name);
         this.employeeID = employeeID;
         this.dateOfBirth = dateOfBirth;
@@ -36,11 +37,11 @@ public class Employee extends Person {
         this.employeeID = employeeID;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -115,8 +116,8 @@ public class Employee extends Person {
         }
 
         // Validate age to be at least 18 years old
-        Date currentDate = new Date();
-        if (currentDate.getYear() - dateOfBirth.getYear() < 18) {
+        LocalDate currentDate = LocalDate.now();
+        if (Period.between(dateOfBirth, currentDate).getYears() < 18) {
             throw new PersonInvalidInputException("Employee must be at least 18 years old.");
         }
 

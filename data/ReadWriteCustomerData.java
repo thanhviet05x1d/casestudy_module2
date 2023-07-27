@@ -4,11 +4,11 @@ import model.person.Customer;
 import utils.DateUtility;
 
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReadWriteCustomerData {
-    static DateUtility dateUtility =new DateUtility();
     private static final String CSV_FILE_PATH = "D:\\R_CODE_GYM_MY_STUDY\\c0523g1_nguyen_thanh_viet_module2\\FuramaResort\\src\\data\\customer.csv";
     private static final String CSV_SEPARATOR = ",";
 
@@ -29,7 +29,7 @@ public class ReadWriteCustomerData {
                 String line = customer.getIdCardNumber()
                         + "," + customer.getName()
                         + "," + customer.getCustomerID()
-                        + "," + dateUtility.formatDate(customer.getDateOfBirth())
+                        + "," + customer.getDateOfBirth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                         + "," + customer.getGender()
                         + "," + customer.getPhoneNumber()
                         + "," + customer.getEmail()

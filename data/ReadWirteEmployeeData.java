@@ -5,11 +5,11 @@ import utils.DateUtility;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReadWirteEmployeeData {
-    static DateUtility dateUtility =new DateUtility();
     private static final String CSV_FILE_PATH = "D:\\R_CODE_GYM_MY_STUDY\\c0523g1_nguyen_thanh_viet_module2\\FuramaResort\\src\\data\\employee.csv";
     private static final String CSV_SEPARATOR = ",";
 
@@ -31,7 +31,7 @@ public class ReadWirteEmployeeData {
                 String line = employee.getIdCardNumber()
                         + "," + employee.getName()
                         + "," + employee.getEmployeeID()
-                        + "," + dateUtility.formatDate(employee.getDateOfBirth())
+                        + "," + (employee.getDateOfBirth()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                         + "," + employee.getGender()
                         + "," + employee.getPhoneNumber()
                         + "," + employee.getEmail()

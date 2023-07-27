@@ -6,8 +6,7 @@ import repository.interface_repo.IEmployeeRepository;
 import service.interface_ser.IEmployeeService;
 import utils.PersonInvalidInputException;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class EmployeeService implements IEmployeeService {
@@ -38,12 +37,7 @@ public class EmployeeService implements IEmployeeService {
 
         System.out.print("Enter employee date of birth (yyyy-MM-dd): ");
         String dobString = scanner.nextLine();
-        Date dateOfBirth = null;
-        try {
-            dateOfBirth = new SimpleDateFormat("yyyy-MM-dd").parse(dobString);
-        } catch (ParseException e) {
-            System.out.println("Error: Invalid date format. Please enter the date in yyyy-MM-dd format.");
-        }
+        LocalDate dateOfBirth = LocalDate.parse(dobString);
 
         System.out.print("Enter gender of employee(male/female): ");
         String gender = scanner.nextLine();

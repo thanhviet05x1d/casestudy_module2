@@ -9,8 +9,7 @@ import repository.interface_repo.IContractRepository;
 import service.interface_ser.IContractService;
 import utils.BookingStartDateComparator;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class ContractService implements IContractService {
@@ -43,24 +42,20 @@ public class ContractService implements IContractService {
 
         System.out.print("Enter start date (yyyy-MM-dd): ");
         String startDateString = scanner.nextLine();
+        LocalDate startDate = LocalDate.parse(startDateString);
+
 
         System.out.print("Enter end date (yyyy-MM-dd): ");
         String endDateString = scanner.nextLine();
+        LocalDate endDate = LocalDate.parse(endDateString);
 
-        try {
+        Contract contract = new Contract(contractId, booking.getBookingId(), customerId, facilityId, startDate, endDate);
+        contractRepository.addContract(contract);
 
-            Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
-            Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDateString);
-
-            Contract contract = new Contract(contractId, booking.getBookingId(), customerId, facilityId, startDate, endDate);
-            contractRepository.addContract(contract);
-
-            System.out.println("Contract created successfully.");
+        System.out.println("Contract created successfully.");
 //            bookingRepository. Chưa viết code để xóa booking
 
-        } catch (ParseException e) {
-            System.out.println("Error: Invalid date format. Please enter the date in yyyy-MM-dd format.");
-        }
+
     }
 
     @Override
@@ -93,20 +88,15 @@ public class ContractService implements IContractService {
 
                 System.out.print("Enter new start date (yyyy-MM-dd): ");
                 String newStartDateString = scanner.nextLine();
+                LocalDate newStartDate = LocalDate.parse(newStartDateString);
 
                 System.out.print("Enter new end date (yyyy-MM-dd): ");
                 String newEndDateString = scanner.nextLine();
-                try {
-                    Date newStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(newStartDateString);
-                    Date newEndDate = new SimpleDateFormat("yyyy-MM-dd").parse(newEndDateString);
+                LocalDate newEndDate = LocalDate.parse(newEndDateString);
 
-                    Contract newContract = new Contract(contractId, newBookingId, newCustomerId, newFacilityId, newStartDate, newEndDate);
-                    contractRepository.editContract(contractId, newContract);
-                    System.out.println("Contract updated successfully.");
-
-                } catch (ParseException e) {
-                    System.out.println("Error: Invalid date format. Please enter the date in yyyy-MM-dd format.");
-                }
+                Contract newContract = new Contract(contractId, newBookingId, newCustomerId, newFacilityId, newStartDate, newEndDate);
+                contractRepository.editContract(contractId, newContract);
+                System.out.println("Contract updated successfully.");
                 break;
             }
         }

@@ -1,5 +1,5 @@
 idCardNumber,name,employeeID,dateOfBirth,gender,phoneNumber,email,degree,position,salary
-1,Viet,NV-0001,0006-08-23,female,365129804,viet@gmail.com,Intermediate,Staft,500
-2,Hung,NV-0002,0006-08-23,female,365129804,viet@gmail.com,College,Staft,500
-3,Hanh,NV-0003,0007-08-23,male,365129804,viet@gmail.com,University,Service Manager,1000
-4,Long,NV-0001,0007-08-23,male,365129804,viet@gmail.com,After University,Sale Manager,1500
+1,Viet,NV-0001,2003-04-04,female,365129804,viet@gmail.com,Intermediate,Staft,500
+2,Hung,NV-0002,2003-03-03,female,365129804,viet@gmail.com,College,Staft,500
+3,Hanh,NV-0003,2003-02-02,male,365129804,viet@gmail.com,University,Service Manager,1000
+4,Long,NV-0001,2003-01-01,male,365129804,viet@gmail.com,After University,Sale Manager,1500

@@ -8,6 +8,7 @@ import repository.interface_repo.IBookingRepository;
 import repository.interface_repo.ICustomerRepository;
 import repository.interface_repo.IPromotionRepository;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class CustomerRepository implements ICustomerRepository {
@@ -73,17 +74,15 @@ public class CustomerRepository implements ICustomerRepository {
     public Stack<Booking> getBookingsCurrentMonth() {
 
         //1. Lấy tháng hiện tại từ ngày hiện tại
-        Calendar calendar = Calendar.getInstance();
-        int currentMonth = calendar.get(Calendar.MONTH);
+
+        int currentMonth = LocalDate.now().getMonthValue();
 
         //2. Lấy ra danh sách booking trong tháng hiện tại
         Stack<Booking> bookingsInCurrentMonth = new Stack<>();
         Set<Booking> bookingSet = bookingRepository.displayAllBookings();
         for (Booking booking : bookingSet) {
             // Lấy tháng từ startDate
-            Calendar startCalendar = Calendar.getInstance();
-            startCalendar.setTime(booking.getStartDate());
-            int startMonth = startCalendar.get(Calendar.MONTH);
+            int startMonth = booking.getStartDate().getMonthValue();
 
             // Nếu tháng bằng với tháng hiện tại, thêm Booking vào danh sách kết quả
             if (startMonth == currentMonth) {

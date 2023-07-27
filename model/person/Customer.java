@@ -4,11 +4,12 @@ package model.person;
 import utils.PersonInvalidInputException;
 
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class Customer extends Person {
     private String customerID;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String gender;
     private String phoneNumber;
     private String email;
@@ -16,7 +17,7 @@ public class Customer extends Person {
     private String address;
 
 
-    public Customer(String idCardNumber, String name, String customerID, Date dateOfBirth, String gender, String phoneNumber, String email, String type, String address) {
+    public Customer(String idCardNumber, String name, String customerID, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String type, String address) {
         super(idCardNumber, name);
         this.customerID = customerID;
         this.dateOfBirth = dateOfBirth;
@@ -35,11 +36,11 @@ public class Customer extends Person {
         this.customerID = customerID;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -111,8 +112,8 @@ public class Customer extends Person {
         }
 
         // Validate age to be at least 18 years old
-        Date currentDate = new Date();
-        if (currentDate.getYear() - dateOfBirth.getYear() < 18) {
+        LocalDate currentDate = LocalDate.now();
+        if (Period.between(dateOfBirth, currentDate).getYears() < 18) {
             throw new PersonInvalidInputException("Customer must be at least 18 years old.");
         }
 

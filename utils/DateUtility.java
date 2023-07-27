@@ -4,6 +4,7 @@ import model.person.Customer;
 import model.person.Employee;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DateUtility {
@@ -11,7 +12,7 @@ public class DateUtility {
         String idCardNumber = data[0];
         String name = data[1];
         String employeeID = data[2];
-        Date dateOfBirth = parseDate(data[3]);
+        LocalDate dateOfBirth = LocalDate.parse(data[3]);
         String gender = data[4];
         String phoneNumber = data[5];
         String email = data[6];
@@ -25,7 +26,7 @@ public class DateUtility {
         String idCardNumber = data[0];
         String name = data[1];
         String customerID = data[2];
-        Date dateOfBirth = parseDate(data[3]);
+        LocalDate dateOfBirth = LocalDate.parse(data[3]);
         String gender = data[4];
         String phoneNumber = data[5];
         String email = data[6];
@@ -35,34 +36,11 @@ public class DateUtility {
         return new Customer(idCardNumber, name, customerID, dateOfBirth, gender, phoneNumber, email, type, address);
     }
 
-    public Date parseDate(String dateString) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            return dateFormat.parse(dateString);
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public String formatDate(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);
     }
 
-    public String[] convertEmployeeToData(Employee employee) {
-        String[] data = new String[10];
-        data[0] = employee.getIdCardNumber();
-        data[1] = employee.getName();
-        data[2] = employee.getEmployeeID();
-        data[3] = formatDate(employee.getDateOfBirth());
-        data[4] = employee.getGender();
-        data[5] = employee.getPhoneNumber();
-        data[6] = employee.getEmail();
-        data[7] = employee.getDegree();
-        data[8] = employee.getPosition();
-        data[9] = String.valueOf(employee.getSalary());
-        return data;
-    }
 }
 
