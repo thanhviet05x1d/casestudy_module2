@@ -1,43 +1,48 @@
 package controller;
 
+import service.implement_ser.EmployeeService;
+import service.interface_ser.IEmployeeService;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class FuramaController {
+public class EmployeeController {
     private static Scanner scanner = new Scanner(System.in);
+    private static IEmployeeService employeeService = new EmployeeService();
+    public static void displayEmployeeManagementMenu() {
 
-    public void displayMainMenu() {
         int choice;
         do {
             try {
-                System.out.println("------ FURAMA MANAGEMENT SYSTEM ------");
-                System.out.println("1. Employee Management");
-                System.out.println("2. Customer Management");
-                System.out.println("3. Facility Management");
-                System.out.println("4. Booking Management");
-                System.out.println("5. Promotion Management");
-                System.out.println("6. Exit");
+                System.out.println("------ Employee Management ------");
+                System.out.println("1. Display list employees");
+                System.out.println("2. Add new employee");
+                System.out.println("3. Edit employee");
+                System.out.println("4. Delete employee");
+                System.out.println("5. Search by name employee");
+                System.out.println("6. Return main menu");
                 System.out.print("Enter your choice (1-6): ");
                 choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
-                        EmployeeController.displayEmployeeManagementMenu();
+                        employeeService.getAllEmployees();
                         break;
                     case 2:
-                        CustomerController.displayCustomerManagementMenu();
+                        employeeService.addEmployee();
                         break;
                     case 3:
-                        FacilityController.displayFacilityManagementMenu();
+                        employeeService.editEmployee();
+
                         break;
                     case 4:
-                        BookingController.displayBookingManagementMenu();
+                        employeeService.deleteEmployee();
+
                         break;
                     case 5:
-                        PromotionController.displayPromotionManagementMenu();
+                        employeeService.searchEmployeesByName();
                         break;
                     case 6:
-                        System.out.println("Exiting the program. Goodbye!");
-                        break;
+                        return; // Return to the main menu
                     default:
                         System.out.println("Invalid choice. Please choose a number between 1 and 6.");
                 }
