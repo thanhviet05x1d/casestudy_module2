@@ -1,6 +1,6 @@
 package repository.implement_repo;
 
-import data.ReadWirteEmployeeData;
+import data.ReadWriteEmployeeData;
 import model.person.Employee;
 import repository.interface_repo.IEmployeeRepository;
 
@@ -15,35 +15,35 @@ public class EmployeeRepository implements IEmployeeRepository {
 
     @Override
     public List<Employee> getAllEmployees() {
-        employeeList = ReadWirteEmployeeData.readDataEmployeeFromFile();
+        employeeList = ReadWriteEmployeeData.readDataEmployeeFromFile();
         return employeeList;
     }
 
      @Override
     public void addEmployee(Employee employee) {
-        employeeList = ReadWirteEmployeeData.readDataEmployeeFromFile();
+        employeeList = ReadWriteEmployeeData.readDataEmployeeFromFile();
         employeeList.add(employee);
-        ReadWirteEmployeeData.writeDataEmployeeToFile(employeeList, false);
+        ReadWriteEmployeeData.writeDataEmployeeToFile(employeeList, false);
     }
 
     @Override
     public void editEmployee(String id, String idNew) {
-        employeeList = ReadWirteEmployeeData.readDataEmployeeFromFile();
+        employeeList = ReadWriteEmployeeData.readDataEmployeeFromFile();
         for (Employee e : employeeList) {
             if (e.getIdCardNumber().equals(id)) {
                 e.setIdCardNumber(idNew);
-                ReadWirteEmployeeData.writeDataEmployeeToFile(employeeList, false);
+                ReadWriteEmployeeData.writeDataEmployeeToFile(employeeList, false);
             }
         }
     }
 
     @Override
     public void deleteEmployee(String idCardNumber) {
-        employeeList = ReadWirteEmployeeData.readDataEmployeeFromFile();
+        employeeList = ReadWriteEmployeeData.readDataEmployeeFromFile();
         for (Employee e : employeeList) {
             if (e.getIdCardNumber().equals(idCardNumber)) {
                 employeeList.remove(e);
-                ReadWirteEmployeeData.writeDataEmployeeToFile(employeeList, false);
+                ReadWriteEmployeeData.writeDataEmployeeToFile(employeeList, false);
                 break;
             }
         }
@@ -51,7 +51,7 @@ public class EmployeeRepository implements IEmployeeRepository {
 
     @Override
     public List<Employee> searchEmployeesByName(String searchName) {
-        employeeList = ReadWirteEmployeeData.readDataEmployeeFromFile();
+        employeeList = ReadWriteEmployeeData.readDataEmployeeFromFile();
         List<Employee> searchEmployeeList = new ArrayList<>();
         for (Employee e : employeeList) {
             if (e.getName().contains(searchName)) {

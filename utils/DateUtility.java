@@ -3,9 +3,7 @@ package utils;
 import model.person.Customer;
 import model.person.Employee;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class DateUtility {
     public Employee parseEmployeeData(String[] data) {
@@ -37,10 +35,6 @@ public class DateUtility {
     }
 
 
-    public String formatDate(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(date);
-    }
 
 }
 
