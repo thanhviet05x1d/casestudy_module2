@@ -34,13 +34,22 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public void editCustomer(String id, String idNew) {
+    public void editCustomer(String id, Customer customer) {
         customerList = ReadWriteCustomerData.readDataCustomerFromFile();
         for (Customer c : customerList) {
             if (c.getIdCardNumber().equals(id)) {
-                c.setIdCardNumber(idNew);
+                c.setIdCardNumber(customer.getIdCardNumber());
+                c.setName(customer.getName());
+                c.setCustomerID(customer.getCustomerID());
+                c.setDateOfBirth(customer.getDateOfBirth());
+                c.setGender(customer.getGender());
+                c.setPhoneNumber(customer.getPhoneNumber());
+                c.setEmail(customer.getEmail());
+                c.setType(customer.getType());
+                c.setAddress(customer.getAddress());
                 ReadWriteCustomerData.writeDataCustomerToFile(customerList, false);
             }
+            break;
         }
     }
 

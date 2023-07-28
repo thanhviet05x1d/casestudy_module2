@@ -2,6 +2,7 @@ package repository.interface_repo;
 
 import model.booking.Booking;
 import model.person.Customer;
+import model.person.Employee;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface ICustomerRepository {
 
     void addCustomer(Customer customer);
 
-    void editCustomer(String id, String idNew);
+    void editCustomer(String id, Customer customer);
 
     void deleteCustomer(String idCardNumber);
 

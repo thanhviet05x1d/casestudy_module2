@@ -2,6 +2,7 @@ package service.implement_ser;
 
 import model.booking.Booking;
 import model.person.Customer;
+import model.person.Employee;
 import repository.implement_repo.CustomerRepository;
 import repository.interface_repo.ICustomerRepository;
 import service.interface_ser.ICustomerService;
@@ -66,7 +67,6 @@ public class CustomerService implements ICustomerService {
         System.out.print("Enter address of customer: ");
         String address = scanner.nextLine();
 
-
         try {
             Customer customer = new Customer(idCardNumber, name, customerID, dateOfBirth, gender, phoneNumber, email, type, address);
             customer.validateInput();
@@ -81,9 +81,59 @@ public class CustomerService implements ICustomerService {
     public void editCustomer() {
         System.out.println("Enter ID customer to Edit:");
         String id = scanner.nextLine();
-        System.out.println("Nhập ID mới:");
-        String idNew = scanner.nextLine();
-        customerRepository.editCustomer(id, idNew);
+
+        List<Customer> customerList = customerRepository.getAllCustomers();
+        boolean found = false;
+        for (Customer customer : customerList) {
+            if (customer.getIdCardNumber().equals(id)) {
+                found = true;
+                break;
+            }
+        }
+        if (found == false) {
+            System.out.println("Id can not found!");
+            return;
+        }
+
+        System.out.print("Enter Customer ID: ");
+        String idCardNumber = scanner.nextLine();
+
+        System.out.print("Enter customer name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter customer code (KH-YYYY): ");
+        String customerID = scanner.nextLine();
+
+
+        System.out.print("Enter customer date of birth (yyyy-MM-dd): ");
+        String dobString = scanner.nextLine();
+
+        LocalDate dateOfBirth = LocalDate.parse(dobString);
+
+        System.out.print("Enter gender of customer(male/female): ");
+        String gender = scanner.nextLine();
+
+        System.out.print("Enter customer phone number: ");
+        String phoneNumber = scanner.nextLine();
+
+        System.out.print("Enter email of customer: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Enter type of customer: ");
+        String type = scanner.nextLine();
+
+        System.out.print("Enter address of customer: ");
+        String address = scanner.nextLine();
+
+        try {
+            Customer customer = new Customer(idCardNumber, name, customerID, dateOfBirth, gender, phoneNumber, email, type, address);
+            customer.validateInput();
+            customerRepository.editCustomer(id,customer);
+            System.out.println("Customer added successfully.");
+        } catch (PersonInvalidInputException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
     }
 
     @Override

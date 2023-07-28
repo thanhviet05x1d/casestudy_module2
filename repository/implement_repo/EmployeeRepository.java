@@ -27,13 +27,23 @@ public class EmployeeRepository implements IEmployeeRepository {
     }
 
     @Override
-    public void editEmployee(String id, String idNew) {
+    public void editEmployee(String id, Employee employee) {
         employeeList = ReadWriteEmployeeData.readDataEmployeeFromFile();
         for (Employee e : employeeList) {
             if (e.getIdCardNumber().equals(id)) {
-                e.setIdCardNumber(idNew);
+                e.setIdCardNumber(employee.getIdCardNumber());
+                e.setName(employee.getName());
+                e.setEmployeeID(employee.getEmployeeID());
+                e.setDateOfBirth(employee.getDateOfBirth());
+                e.setGender(employee.getGender());
+                e.setPhoneNumber(employee.getPhoneNumber());
+                e.setEmail(employee.getEmail());
+                e.setDegree(employee.getDegree());
+                e.setPosition(employee.getPosition());
+                e.setSalary(employee.getSalary());
                 ReadWriteEmployeeData.writeDataEmployeeToFile(employeeList, false);
             }
+            break;
         }
     }
 

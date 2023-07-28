@@ -9,7 +9,7 @@ public interface IEmployeeRepository {
 
     void addEmployee(Employee employee);
 
-    void editEmployee(String id, String idNew);
+    void editEmployee(String id, Employee employee);
 
     void deleteEmployee(String idCardNumber);
 
