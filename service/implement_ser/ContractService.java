@@ -51,10 +51,10 @@ public class ContractService implements IContractService {
 
         Contract contract = new Contract(contractId, booking.getBookingId(), customerId, facilityId, startDate, endDate);
         contractRepository.addContract(contract);
-
         System.out.println("Contract created successfully.");
-//            bookingRepository. Chưa viết code để xóa booking
 
+        // Xóa booking đã ký hợp đồng
+        bookingRepository.deleteBooking(booking.getBookingId());
 
     }
 

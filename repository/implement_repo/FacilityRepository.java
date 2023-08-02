@@ -64,7 +64,6 @@ public class FacilityRepository implements IFacilityRepository {
         for (Facility key : facilityMap.keySet()) {
             if (key.getFacilityID().equals(facilityID)) {
                 facilityMap.remove(key);
-                break;
             }
         }
     }

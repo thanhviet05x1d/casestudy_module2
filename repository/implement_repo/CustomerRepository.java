@@ -49,7 +49,6 @@ public class CustomerRepository implements ICustomerRepository {
                 c.setAddress(customer.getAddress());
                 ReadWriteCustomerData.writeDataCustomerToFile(customerList, false);
             }
-            break;
         }
     }
 
@@ -60,7 +59,6 @@ public class CustomerRepository implements ICustomerRepository {
             if (c.getIdCardNumber().equals(idCardNumber)) {
                 customerList.remove(c);
                 ReadWriteCustomerData.writeDataCustomerToFile(customerList, false);
-                break;
             }
         }
     }

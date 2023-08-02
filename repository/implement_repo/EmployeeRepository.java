@@ -43,7 +43,6 @@ public class EmployeeRepository implements IEmployeeRepository {
                 e.setSalary(employee.getSalary());
                 ReadWriteEmployeeData.writeDataEmployeeToFile(employeeList, false);
             }
-            break;
         }
     }
 
@@ -54,7 +53,6 @@ public class EmployeeRepository implements IEmployeeRepository {
             if (e.getIdCardNumber().equals(idCardNumber)) {
                 employeeList.remove(e);
                 ReadWriteEmployeeData.writeDataEmployeeToFile(employeeList, false);
-                break;
             }
         }
     }

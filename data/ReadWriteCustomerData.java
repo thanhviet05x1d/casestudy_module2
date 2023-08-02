@@ -21,7 +21,7 @@ public class ReadWriteCustomerData {
 
             // Write the header line if the file is empty
             if (!file.exists() || file.length() == 0) {
-                bufferedWriter.write("ID,Name,EmployeeCode,IDCardNumber,PhoneNumber,DateOfBirth");
+                bufferedWriter.write("IDCard,Name,CustomerCode,BirthDate,Gender,PhoneNumber,Email,Type,Address");
                 bufferedWriter.newLine();
             }
 
