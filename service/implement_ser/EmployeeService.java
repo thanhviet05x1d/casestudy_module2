@@ -72,7 +72,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void editEmployee() {
-        System.out.println("Enter ID employee to Edit:");
+        System.out.println("Enter ID employee to edit:");
         String id = scanner.nextLine();
         List<Employee> employeeList = employeeRepository.getAllEmployees();
 
@@ -85,12 +85,11 @@ public class EmployeeService implements IEmployeeService {
         }
 
         if (found == false) {
-            System.out.println("Id can not found!");
+            System.out.println("ID can not be found!");
             return;
         }
 
-        System.out.print("Enter ID card number: ");
-        String idCardNumber = scanner.nextLine();
+        System.out.println("-- Enter new information for employee --");
 
         System.out.print("Enter employee name: ");
         String name = scanner.nextLine();
@@ -121,7 +120,7 @@ public class EmployeeService implements IEmployeeService {
         double salary = Double.parseDouble(scanner.nextLine());
 
         try {
-            Employee employee = new Employee(idCardNumber, name, employeeID, dateOfBirth, gender, phoneNumber, email, degree, position, salary);
+            Employee employee = new Employee(id, name, employeeID, dateOfBirth, gender, phoneNumber, email, degree, position, salary);
             employee.validateInput(); // Kiểm tra dữ liệu đầu vào
 
             employeeRepository.editEmployee(id, employee);
@@ -142,11 +141,16 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void searchEmployeesByName() {
-        System.out.println("Nhập tên của nhân viên cần tìm:");
+        System.out.println("Enter name to search:");
         String searchName = scanner.nextLine();
         List<Employee> employeeSearchList = employeeRepository.searchEmployeesByName(searchName);
-        for (Employee e : employeeSearchList) {
-            System.out.println(e);
+        if (employeeSearchList.size()==0){
+            System.out.println("Sorry! Can not be found.");
+        } else {
+            System.out.println("---Search results---");
+            for (Employee e : employeeSearchList) {
+                System.out.println(e);
+            }
         }
     }
 }

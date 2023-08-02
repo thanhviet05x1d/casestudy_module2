@@ -73,7 +73,7 @@ public class FacilityService implements IFacilityService {
         System.out.println("Enter Room Standard: ");
         String roomStandard = scanner.nextLine();
         System.out.println("Number of floor: ");
-        int numberOfFloors = scanner.nextInt();
+        int numberOfFloors = Integer.parseInt(scanner.nextLine());
 
         Facility houseNew = new House(facilityCode, facilityName, area, rentalCost, maxCapacity, rentalType, roomStandard, numberOfFloors);
 
@@ -109,7 +109,7 @@ public class FacilityService implements IFacilityService {
         try {
             roomNew.validateInput(); // Kiểm tra dữ liệu hợp lệ
             facilityRepository.addFacility(roomNew);
-            System.out.println("Successful!");
+            System.out.println("Room added successfully!");
         } catch (FacilityInvalidInputException e) {
             System.out.println("Error: " + e.getMessage());
         }

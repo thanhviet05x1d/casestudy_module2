@@ -2,16 +2,12 @@ package service.implement_ser;
 
 import model.booking.Booking;
 import model.person.Customer;
-import model.person.Employee;
 import repository.implement_repo.CustomerRepository;
 import repository.interface_repo.ICustomerRepository;
 import service.interface_ser.ICustomerService;
 import utils.PersonInvalidInputException;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,9 +30,9 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void addCustomer() {
-        System.out.println("------ Add New Customer ------");
+        System.out.println("--- Add New Customer ---");
 
-        System.out.print("Enter Customer ID: ");
+        System.out.print("Enter customer ID: ");
         String idCardNumber = scanner.nextLine();
 
         System.out.print("Enter customer name: ");
@@ -71,7 +67,7 @@ public class CustomerService implements ICustomerService {
             Customer customer = new Customer(idCardNumber, name, customerID, dateOfBirth, gender, phoneNumber, email, type, address);
             customer.validateInput();
             customerRepository.addCustomer(customer);
-            System.out.println("Customer added successfully.");
+            System.out.println("Customer added successfully!");
         } catch (PersonInvalidInputException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -91,12 +87,11 @@ public class CustomerService implements ICustomerService {
             }
         }
         if (found == false) {
-            System.out.println("Id can not found!");
+            System.out.println("Id can be not found!");
             return;
         }
 
-        System.out.print("Enter Customer ID: ");
-        String idCardNumber = scanner.nextLine();
+        System.out.println("-- Enter new information for customer --");
 
         System.out.print("Enter customer name: ");
         String name = scanner.nextLine();
@@ -126,10 +121,10 @@ public class CustomerService implements ICustomerService {
         String address = scanner.nextLine();
 
         try {
-            Customer customer = new Customer(idCardNumber, name, customerID, dateOfBirth, gender, phoneNumber, email, type, address);
+            Customer customer = new Customer(id, name, customerID, dateOfBirth, gender, phoneNumber, email, type, address);
             customer.validateInput();
-            customerRepository.editCustomer(id,customer);
-            System.out.println("Customer added successfully.");
+            customerRepository.editCustomer(id, customer);
+            System.out.println("Customer added successfully!");
         } catch (PersonInvalidInputException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -148,8 +143,13 @@ public class CustomerService implements ICustomerService {
         System.out.println("Enter name of customer to search:");
         String searchName = scanner.nextLine();
         List<Customer> customerSearchList = customerRepository.searchCustomersByName(searchName);
-        for (Customer c : customerSearchList) {
-            System.out.println(c);
+        if (customerSearchList.size() == 0) {
+            System.out.println("Sorry! Can not be found.");
+        } else {
+            System.out.println("---Search results---");
+            for (Customer c : customerSearchList) {
+                System.out.println(c);
+            }
         }
     }
 

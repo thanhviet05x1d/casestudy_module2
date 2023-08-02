@@ -55,7 +55,7 @@ public class FacilityController {
         System.out.println("3. Add New Room");
         System.out.println("4. Back to menu");
         System.out.print("Your choice: ");
-        int choice = scanner.nextInt();
+        int choice =Integer.parseInt(scanner.nextLine());
         switch (choice) {
             case 1:
                 facilityService.addNewVilla();

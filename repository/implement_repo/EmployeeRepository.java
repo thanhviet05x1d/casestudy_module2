@@ -53,6 +53,7 @@ public class EmployeeRepository implements IEmployeeRepository {
             if (e.getIdCardNumber().equals(idCardNumber)) {
                 employeeList.remove(e);
                 ReadWriteEmployeeData.writeDataEmployeeToFile(employeeList, false);
+                break;
             }
         }
     }

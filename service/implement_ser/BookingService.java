@@ -11,7 +11,6 @@ import repository.interface_repo.ICustomerRepository;
 import repository.interface_repo.IFacilityRepository;
 import service.interface_ser.IBookingService;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -25,15 +24,15 @@ public class BookingService implements IBookingService {
     @Override
     public void displayAllBookings() {
         Set<Booking> bookingSet = bookingRepository.displayAllBookings();
+        System.out.println("--- List of bookings ---");
         for (Booking booking : bookingSet) {
             System.out.println(booking);
-
         }
     }
 
     @Override
     public void addNewBooking() {
-        System.out.println("------ Add New Booking ------");
+        System.out.println("--- Add New Booking ---");
         System.out.print("Enter booking ID: ");
         String bookingId = scanner.nextLine();
 
@@ -72,7 +71,7 @@ public class BookingService implements IBookingService {
                 break;
             }
         }
-        System.out.println("Booking added successfully.");
+        System.out.println("Booking added successfully!");
 
     }
 

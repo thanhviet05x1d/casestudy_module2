@@ -20,7 +20,7 @@ public class ContractService implements IContractService {
     @Override
     public void createNewContract() {
 
-        System.out.println("------ Create New Contract ------");
+        System.out.println("--- Create New Contract ---");
         // Chuyển danh sách booking từ Set sang PriorityQueue
         Queue<Booking> bookingQueue = new PriorityQueue<>(new BookingStartDateComparator());
         bookingQueue.addAll(bookingRepository.displayAllBookings());

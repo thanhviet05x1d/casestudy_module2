@@ -1,7 +1,5 @@
 IDCard,Name,CustomerCode,BirthDate,Gender,PhoneNumber,Email,Type,Address
 212765432,Anh Viet,KH-0987,2001-09-12,male,0987654231,viet@gmail.com,Gold,Da Nang
 212728456,Dat,KH-0002,2003-02-04,female,365129804,viet@gmail.com,Platinum,Ha Noi
-212728719,Tran Anh Duc,KH-0987,2000-07-06,male,0987231456,viet@gmail.com,Gold,Da Nang
 212728765,Thien,KH-0004,2003-04-02,female,365129804,viet@gmail.com,Silver,Ha Noi
-212735981,Long,KH-0005,2003-05-01,male,365129804,viet@gmail.com,Member,Da Nang
 212345678,Nguyen Thanh,KH-0987,2000-09-05,male,0987654231,viet@gmail.com,Gold,Da Nang
